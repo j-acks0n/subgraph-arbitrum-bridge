@@ -51,7 +51,7 @@ export const Table = ({ data }: TableProps) => {
         showSizeChanger: true,
         pageSizeOptions: ['10', '20', '50'],
         pageSize: pageSize,
-        onShowSizeChange(_, size) {
+        onShowSizeChange(_current: number, size: number) {
           setPageSize(size);
         },
       }}
