@@ -4,7 +4,11 @@ This repo contains the `subgraph` for querying the arbitrum bridge contract as w
 
 Subgraph is located in `packages/arbitrum-bridge`
 
+- Subgraph url: https://thegraph.com/hosted-service/subgraph/j-acks0n/arbitrum-bridge
+
 Web Frontend is located in `apps/web`
+
+- Frontend url: https://subgraph-arbitrum-bridge-web-seven.vercel.app/
 
 ## How to create run the frontend locally?
 
