@@ -10,7 +10,7 @@ Web Frontend is located in `apps/web`
 
 - Frontend url: https://subgraph-arbitrum-bridge-web-seven.vercel.app/
 
-## How to create run the frontend locally?
+## How to run the frontend locally?
 
 1. Navigate to `apps/web` and run `yarn`
 2. Run `yarn dev`
