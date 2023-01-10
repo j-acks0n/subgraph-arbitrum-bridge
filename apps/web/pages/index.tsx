@@ -1,12 +1,15 @@
-import { Button, Typography } from 'antd';
+import { Button, Select, Typography } from 'antd';
 import Head from 'next/head';
 import { Layout, Table } from '../components';
 import { useHome } from '../hooks';
+
+const { Option } = Select;
 
 const { Title } = Typography;
 export default function Home() {
   //Custom hook for fetching data from the subgraph
   const { data, getData } = useHome();
+
   return (
     <>
       <Head>

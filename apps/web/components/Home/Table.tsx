@@ -1,6 +1,17 @@
-import { Table as AntdTable, Typography } from 'antd';
-import { useState } from 'react';
+import {
+  Button,
+  Input,
+  Select,
+  Space,
+  Table as AntdTable,
+  Typography,
+} from 'antd';
+import { useMemo, useState } from 'react';
 import { ETHDeposits } from '../../utilities';
+import styles from '../../styles/Home.module.css';
+
+const { Option } = Select;
+const { Title } = Typography;
 
 const columns = [
   {
@@ -42,19 +53,55 @@ export interface TableProps {
 }
 export const Table = ({ data }: TableProps) => {
   const [pageSize, setPageSize] = useState<number>(10);
+  const [selected, setSelected] = useState<string>('transactionHash');
+  const [input, setInput] = useState<string>('');
+
+  const filteredData = useMemo(() => {
+    return data.filter((entry) => {
+      if (selected === 'transactionHash') {
+        return entry.transactionHash
+          .toLowerCase()
+          .includes(input.toLowerCase());
+      } else if (selected === 'address') {
+        return entry.senderAliased.toLowerCase().includes(input.toLowerCase());
+      }
+    });
+  }, [data, input, selected]);
+
   return (
-    <AntdTable
-      columns={columns}
-      dataSource={data}
-      pagination={{
-        defaultPageSize: 10,
-        showSizeChanger: true,
-        pageSizeOptions: ['10', '20', '50'],
-        pageSize: pageSize,
-        onShowSizeChange(_current: number, size: number) {
-          setPageSize(size);
-        },
-      }}
-    />
+    <>
+      <Space direction="vertical">
+        <Title level={4}>Query results</Title>
+        <Space>
+          <Input.Group compact>
+            <Select value={selected} onChange={setSelected}>
+              <Option value="transactionHash">Transaction Hash</Option>
+              <Option value="address">Address</Option>
+            </Select>
+            <Input
+              placeholder="Search..."
+              value={input}
+              onChange={(value) => setInput(value.target.value)}
+              style={{ width: '50%' }}
+            />
+          </Input.Group>
+        </Space>
+
+        <AntdTable
+          columns={columns}
+          dataSource={input ? filteredData : data}
+          pagination={{
+            position: ['bottomLeft'],
+            defaultPageSize: 10,
+            showSizeChanger: true,
+            pageSizeOptions: ['10', '20', '50'],
+            pageSize: pageSize,
+            onShowSizeChange(_current: number, size: number) {
+              setPageSize(size);
+            },
+          }}
+        />
+      </Space>
+    </>
   );
 };
