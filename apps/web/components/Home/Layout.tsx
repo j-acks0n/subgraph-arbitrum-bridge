@@ -25,7 +25,7 @@ const items = [
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <AntdLayout className={styles.Layout}>
+    <AntdLayout className={styles.Layout} hasSider>
       <Sider collapsed={false} width={300}>
         <div className={styles.MenuHeader}>
           <Typography className={styles.MenuHeaderText}>
