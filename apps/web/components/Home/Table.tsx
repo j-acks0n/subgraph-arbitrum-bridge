@@ -1,14 +1,6 @@
-import {
-  Button,
-  Input,
-  Select,
-  Space,
-  Table as AntdTable,
-  Typography,
-} from 'antd';
+import { Input, Select, Space, Table as AntdTable, Typography } from 'antd';
 import { useMemo, useState } from 'react';
 import { ETHDeposits } from '../../utilities';
-import styles from '../../styles/Home.module.css';
 
 const { Option } = Select;
 const { Title } = Typography;
